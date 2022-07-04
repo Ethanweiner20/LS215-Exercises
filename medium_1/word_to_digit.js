@@ -1,0 +1,46 @@
+// Word to Digit
+
+const numberWords = [
+  'zero',
+  'one',
+  'two',
+  'three',
+  'four',
+  'five',
+  'six',
+  'seven',
+  'eight',
+  'nine',
+];
+
+function wordToDigit(sentence) {
+  const words = sentence.split(' ');
+
+  const newWords = words.map((word) => {
+    const cleanedWord = word.toLowerCase().replace(/[^a-z]/, '');
+    const numbersIndex = numberWords.indexOf(cleanedWord);
+
+    if (numbersIndex === -1) return word;
+
+    return word.replace(/[A-Za-z]+/g, String(numbersIndex));
+  });
+
+  return newWords.join(' ');
+}
+
+// Generic Cases
+
+console.log(
+  wordToDigit('Please call me at five five five one two three four. Thanks.')
+);
+// "Please call me at 5 5 5 1 2 3 4. Thanks."
+
+// Edge Cases
+
+console.log(wordToDigit('')); // ''
+console.log(wordToDigit('Hello there.')); // 'Hello there
+console.log(wordToDigit('five six')); // '5 6'
+console.log(wordToDigit('fivesix')); // 'fivesix'
+console.log(wordToDigit('fIvE Six')); // '5 6'
+console.log(wordToDigit('five six seven. Hello there.')); // '5 6 7. Hello there.'
+console.log(wordToDigit('five six seven.')); // '5 6 7.'
