@@ -1,0 +1,3 @@
+# Task List
+
+The problem exists on line 17: it attempts to delete a todo from the `todos` array using the `delete` keyword. The `delete` keyword is meant for use on objects. When operating on arrays, it leaves an empty hole at the index of deletion, which in this case is `0`. Therefore, only the first task in the todolist can be deleted (completed) upon any invocation of `completeTasks`, no matter the size of `n`. To properly delete the todo, a different array method, like `Array.prototype.shift` must be used, which avoids creating empty elements and properly shifts array elements into their new positions upon deleting others.
